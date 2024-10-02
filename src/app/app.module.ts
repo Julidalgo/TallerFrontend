@@ -8,12 +8,14 @@ import { EditarMascotasComponent } from './editar-mascotas/editar-mascotas.compo
 import { MascotaService } from './shared/mascota.service';
 import { provideHttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { InicioComponent } from './inicio/inicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaMascotasComponent,
-    EditarMascotasComponent
+    EditarMascotasComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,

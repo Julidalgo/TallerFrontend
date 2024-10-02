@@ -1,0 +1,165 @@
+<style>
+    body {
+        background-color: #ffffff;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .background-image {
+        background-image: url('https://img.freepik.com/vector-gratis/adorable-patron-huella-animal-diseno-fondo_1017-53348.jpg?t=st=1727828721~exp=1727832321~hmac=4804aa3e79149a878646a7b6e11aaf3553edf2a29281aa5f77fa46b9ab7514b3&w=1380');
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.6;
+        z-index: -1;
+    }
+
+
+    /* Sección Héroe */
+    .hero-section {
+        position: relative;
+        background-image: url('https://img.freepik.com/fotos-premium/fila-gatos-perros-colgando-sus-patas-sobre-bandera-blanca_740948-4775.jpg?w=1380');
+        background-size: auto;
+        background-position: center;
+        height: 35vh;
+        /* Cambié la altura para que no ocupe toda la pantalla */
+        color: white;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
+        margin-bottom: 40px;
+        /* Añadí margen para que haya espacio entre secciones */
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+
+
+    .hero-text {
+        z-index: 2;
+        font-size: 2.5rem;
+        font-weight: bold;
+        padding: 0 20px;
+        text-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-button {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        padding: 10px 30px;
+        background-color: #e4bcff;
+        box-shadow: 0 4px 5px rgba(137, 198, 255, 0.5);
+        border: none;
+        color: rgb(0, 0, 0);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .hero-button:hover {
+        background-color: #f9bdff;
+    }
+
+    /* Sección de Mascotas Destacadas */
+    .featured-pets {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    .featured-pets h2 {
+        font-size: 2.5rem;
+        color: #d285ff;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .featured-pet-cards {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .pet-card {
+        background-color: #fcdeff;
+        padding: 15px;
+        border-radius: 15px;
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
+        width: 250px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .pet-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .pet-card h3 {
+        margin-top: 15px;
+        font-size: 1.5rem;
+        color: #333;
+    }
+
+    .pet-card p {
+        color: #000000;
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+</style>
+
+<section class="background-section">
+    <div class="background-image"></div>
+</section>
+
+<!-- Sección Héroe -->
+<section class="hero-section">
+    <div class="hero-text">
+        <h1>Adopta, salva una vida y gana un amigo para siempre</h1>
+        <button class="hero-button" onclick="window.location.href='/mascotas'">Ver Mascotas en Adopcion</button>
+
+    </div>
+</section>
+
+<!-- Sección de Mascotas Destacadas -->
+<section class="featured-pets">
+    <h2>Mascotas que ya encontraron un hogar</h2>
+    <div class="featured-pet-cards">
+        <div class="pet-card">
+            <img src="https://img.freepik.com/fotos-premium/perro-golden-retriever-sobre-fondo-blanco_723055-2338.jpg?w=826"
+                alt="Mascota 1">
+            <h3>Luna</h3>
+            <p>Luna es una perrita juguetona que encontro un hogar lleno de amor.</p>
+        </div>
+        <div class="pet-card">
+            <img src="https://img.freepik.com/foto-gratis/lindo-gato-pelaje-rojo-interior_23-2148882563.jpg?t=st=1727829187~exp=1727832787~hmac=11d40135860335aedba8c0e67f61b1e6295d66d1c4714b885208ab6d8cace0e1&w=826"
+                alt="Mascota 2">
+            <h3>Simba</h3>
+            <p>Simba es un gato curioso que necesitaba un hogar acogedor.</p>
+        </div>
+        <div class="pet-card">
+            <img src="https://img.freepik.com/foto-gratis/loros-posando-espectaculo-aves_181624-58071.jpg?t=st=1727829241~exp=1727832841~hmac=70f9a61b8e404ce6394508655f45932b59a32965360a55991a0f2842ee78520b&w=740"
+                alt="Mascota 3">
+            <h3>Milo</h3>
+            <p>Milo es un loro leal que estaba listo para ser parte de una familia.</p>
+        </div>
+    </div>
+</section>
