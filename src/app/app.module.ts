@@ -13,6 +13,7 @@ import { ListaAdoptantesComponent } from './lista-adoptantes/lista-adoptantes.co
 import { ListaSolicitudesComponent } from './lista-solicitudes/lista-solicitudes.component';
 import { EditarAdoptantesComponent } from './editar-adoptantes/editar-adoptantes.component';
 import { EditarSolicitudesComponent } from './editar-solicitudes/editar-solicitudes.component';
+import { AdoptanteService } from './shared/adoptante.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { EditarSolicitudesComponent } from './editar-solicitudes/editar-solicitu
   ],
   providers: [
     MascotaService,
+    AdoptanteService,
     provideHttpClient(),
     provideClientHydration()
   ],

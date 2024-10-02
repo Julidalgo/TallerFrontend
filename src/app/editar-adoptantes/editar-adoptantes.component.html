@@ -1,1 +1,184 @@
-<p>editar-adoptantes works!</p>
+<style>
+    .background-image {
+        background-image: url('https://img.freepik.com/vector-gratis/gente-ilustracion-plana-lindas-mascotas_23-2148967780.jpg?t=st=1727850266~exp=1727853866~hmac=32e383af5b31f748ba8318ee280434dd5481ec9a976d6958551503832d750090&w=1380');
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.5;
+        z-index: -1;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .mascota-img {
+        height: 200px;
+        margin-bottom: 20px;
+    }
+
+    .custom-card {
+        background-color: rgba(227, 168, 255, 0.877);
+        color: rgb(0, 0, 0);
+        border-radius: 50px;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.726);
+    }
+
+    .table {
+        background-color: #f8f9fa;
+        color: #000;
+    }
+</style>
+
+<!-- Imagen de fondo -->
+<div class="background-image"></div>
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-center align-items-center mb-4">
+        <h2 class="text-center" style="font-size: 40px; text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);">
+            Información del Adoptante</h2>
+    </div>
+
+    <!-- Tarjeta para contener la imagen y las columnas -->
+    <div class="card custom-card">
+        <div class="card-body">
+            <form #adoptanteForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <!-- Columna para la imagen -->
+                    <div class="col-md-4 text-center">
+                        <img class="card-img-top" [src]="
+              'https://www.svgrepo.com/show/492706/happy-woman.svg'" alt="Imagen de {{adoptante.first_name}}"
+                            style="height: 250px; width: 250px; margin-top: 150px;">
+                    </div>
+
+                    <!-- Columna para las casillas -->
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                    <label class="control-label" for="first_name"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Nombre</label>
+                                    <input type="text" class="form-control" required [(ngModel)]="adoptante.first_name"
+                                        name="first_name" id="first_name"
+                                        style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                    <label class="control-label" for="last_name"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Apellido</label>
+                                    <input type="text" class="form-control" required [(ngModel)]="adoptante.last_name"
+                                        name="last_name" id="last_name"
+                                        style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                    <label class="control-label" for="email"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Email</label>
+                                    <input type="email" class="form-control" required [(ngModel)]="adoptante.email"
+                                        name="email" id="email"
+                                        style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                    <label class="control-label" for="phone"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Teléfono</label>
+                                    <input type="text" class="form-control" required [(ngModel)]="adoptante.phone"
+                                        name="phone" id="phone"
+                                        style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                    <label class="control-label" for="address"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Dirección</label>
+                                    <input type="text" class="form-control" required [(ngModel)]="adoptante.address"
+                                        name="address" id="address"
+                                        style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                    <label class="control-label" for="birth_date"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Fecha
+                                        de Nacimiento</label>
+                                    <input type="date" class="form-control" required [(ngModel)]="adoptante.birth_date"
+                                        name="birth_date" id="birth_date"
+                                        style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                    <label class="control-label" for="occupation"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Ocupación</label>
+                                    <input type="text" class="form-control" required [(ngModel)]="adoptante.occupation"
+                                        name="occupation" id="occupation"
+                                        style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                    <label class="control-label" for="housing_type"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Tipo
+                                        de Vivienda</label>
+                                    <input type="text" class="form-control" required
+                                        [(ngModel)]="adoptante.housing_type" name="housing_type" id="housing_type"
+                                        style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                    <label class="control-label" for="has_other_pets"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">¿Tiene
+                                        otras mascotas?</label>
+                                    <input type="text" class="form-control" required
+                                        [(ngModel)]="adoptante.has_other_pets" name="has_other_pets" id="has_other_pets"
+                                        style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                    <label class="control-label" for="type_of_other_pets"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Tipo
+                                        de otras mascotas</label>
+                                    <input type="text" class="form-control" [(ngModel)]="adoptante.type_of_other_pets"
+                                        name="type_of_other_pets" id="type_of_other_pets"
+                                        style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Botones de Guardar Cambios debajo -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-sm" [disabled]="!adoptanteForm.form.valid"
+                        style="background-color: #ffdd46; color: rgb(0, 0, 0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.5rem; margin-bottom: 30px;">
+                        Guardar Informacion
+                    </button>
+                    <button class="btn btn-sm" [routerLink]="['/adoptantes']"
+                        style="background-color: #7cc4ff; color: rgb(0, 0, 0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); margin-left: 10px; font-family: 'Arial', sans-serif; font-size: 1.5rem; margin-bottom: 30px;">
+                        Regresar a Adoptantes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
