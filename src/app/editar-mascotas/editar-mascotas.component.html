@@ -1,23 +1,209 @@
-<div class="row">
-  <div class="col-sm-12">
-    <form (ngSubmit)="onSubmit()" #mascotaForm="ngForm">
-      <fieldset class="form-group">
-        <div class="col-sm-12">
-          <label class="control-label" for="nombre">Nombre</label>
-          <input type="text" class="form-control" required [(ngModel)]="mascota.nombre" name="nombre">
+<style>
+  .background-image {
+    background-image: url('https://img.freepik.com/vector-gratis/vector-fondo-animal-ilustracion-mascotas-lindas_53876-127698.jpg?t=st=1727843980~exp=1727847580~hmac=251e5c1ecbc31dc5b8fe3c2bc5a30f440e569f7e33ba4945ef7470e036a81822&w=740');
+    background-size: cover;
+    /* Hace que la imagen cubra todo el contenedor */
+    background-position: center;
+    /* Centra la imagen */
+    position: absolute;
+    /* Posición absoluta para cubrir el body */
+    top: 0;
+    /* Coloca la imagen al inicio del contenedor */
+    left: 0;
+    /* Coloca la imagen al inicio del contenedor */
+    right: 0;
+    /* Abarca todo el ancho */
+    bottom: 0;
+    /* Abarca toda la altura */
+    opacity: 0.5;
+    /* Establece la opacidad */
+    z-index: -1;
+    /* Asegura que la imagen esté detrás del contenido */
+  }
+
+
+  .form-group {
+    margin-bottom: 1.5rem;
+    /* Espacio inferior entre campos */
+  }
+
+  .mascota-img {
+    height: 200px;
+    /* Altura de la imagen de la mascota */
+    margin-bottom: 20px;
+    /* Espacio debajo de la imagen */
+
+  }
+
+  .custom-card {
+    background-color: rgba(227, 168, 255, 0.877);
+    /* Color de fondo negro con 70% de opacidad */
+    color: rgb(0, 0, 0);
+    /* Color del texto */
+    border-radius: 50px;
+    /* Esquinas redondeadas */
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.726)
+  }
+
+  .table {
+    background-color: #f8f9fa;
+    /* Color de fondo gris claro */
+    color: #000;
+    /* Color del texto */
+    
+  }
+</style>
+
+<!-- Imagen de fondo -->
+<div class="background-image"></div>
+
+
+
+
+<div class="container mt-5">
+  <div class="d-flex justify-content-center align-items-center mb-4">
+    <h2 class="text-center"
+    style="font-size: 40px; text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);">
+      Información de la Mascota</h2>
+  </div>
+
+  <!-- Tarjeta para contener la imagen y las columnas -->
+  <div class="card custom-card">
+    <div class="card-body">
+      <form #mascotaForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <!-- Columna para la imagen -->
+          <div class="col-md-4 text-center">
+            <img class="card-img-top" [src]="(mascota.species.toLowerCase() === 'perro') ? 'https://www.svgrepo.com/show/434054/dog.svg' :
+            (mascota.species.toLowerCase() === 'gato') ? 'https://www.svgrepo.com/show/434029/cat.svg' :
+            (mascota.species.toLowerCase() === 'hamster') ? 'https://www.svgrepo.com/show/396604/hamster.svg' :
+            (mascota.species.toLowerCase() === 'conejo') ? 'https://www.svgrepo.com/show/402544/rabbit-face.svg' :
+            (mascota.species.toLowerCase() === 'cuy' || mascota.species.toLowerCase() === 'conejillo de indias') ? 'https://img.freepik.com/vector-gratis/vinilo-decorativo-cabeza-conejillo-indias_1308-78569.jpg?t=st=1727840681~exp=1727844281~hmac=4b195fbdeb586c47b95bd3df5f26624f07f9b02a945ac03e7f640984d454dd00&w=740' :
+            (mascota.species.toLowerCase() === 'raton') ? 'https://www.svgrepo.com/show/398184/rat.svg' :
+            (mascota.species.toLowerCase() === 'loro') ? 'https://www.svgrepo.com/show/406842/parrot.svg' :
+            (mascota.species.toLowerCase() === 'tortuga') ? 'https://www.svgrepo.com/show/159676/tortoise.svg' :
+            (mascota.species.toLowerCase() === 'ave') ? 'https://www.svgrepo.com/show/530309/bird.svg ' :
+            (mascota.species.toLowerCase() === 'pez') ? 'https://www.svgrepo.com/show/256356/fish.svg' :
+            'https://www.svgrepo.com/show/289219/track-cat.svg'" alt="Imagen de {{mascota.name}}"
+              style="height: 250px; width: 250px; margin-top: 150px;">
+          </div>
+
+          <!-- Columna para las casillas -->
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <label class="control-label" for="name"
+                    style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Nombre</label>
+                  <input type="text" class="form-control" required [(ngModel)]="mascota.name" name="name" id="name"
+                    style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                </fieldset>
+              </div>
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <label class="control-label" for="species"
+                    style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Especie</label>
+                  <input type="text" class="form-control" required [(ngModel)]="mascota.species" name="species"
+                    id="species" style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                </fieldset>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <label class="control-label" for="breed"
+                    style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Raza</label>
+                  <input type="text" class="form-control" required [(ngModel)]="mascota.breed" name="breed" id="breed"
+                    style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                </fieldset>
+              </div>
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <label class="control-label" for="age"
+                    style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Edad</label>
+                  <input type="text" class="form-control" required [(ngModel)]="mascota.age" name="age" id="age"
+                    style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                </fieldset>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <label class="control-label" for="gender"
+                    style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Genero</label>
+                  <input type="text" class="form-control" required [(ngModel)]="mascota.gender" name="gender"
+                    id="gender" style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                </fieldset>
+              </div>
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <label class="control-label" for="size"
+                    style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Tamano</label>
+                  <input type="text" class="form-control" required [(ngModel)]="mascota.size" name="size" id="size"
+                    style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                </fieldset>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <label class="control-label" for="weight"
+                    style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Peso</label>
+                  <input type="text" class="form-control" required [(ngModel)]="mascota.weight" name="weight"
+                    id="weight" style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                </fieldset>
+              </div>
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <label class="control-label" for="entry_date"
+                    style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Fecha de Ingreso</label>
+                  <input type="text" class="form-control" required [(ngModel)]="mascota.entry_date" name="entry_date"
+                    id="entry_date" style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                </fieldset>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <label class="control-label" for="vaccinated"
+                    style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Vacunado</label>
+                  <input type="text" class="form-control" required [(ngModel)]="mascota.vaccinated" name="vaccinated"
+                    id="vaccinated" style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                </fieldset>
+              </div>
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <label class="control-label" for="description"
+                    style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Descripcion</label>
+                  <input type="text" class="form-control" required [(ngModel)]="mascota.description" name="description"
+                    id="description" style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+                </fieldset>
+              </div>
+            </div>
+          </div>
         </div>
-      </fieldset>
-      <fieldset class="form-group">
-        <div class="col-sm-12">
-          <label class="control-label" for="email">Edad</label>
-          <input type="email" class="form-control" required [(ngModel)]="mascota.edad" name="edad">
+
+        <!-- Botones de Guardar Cambios debajo -->
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-sm" [disabled]="!mascotaForm.form.valid"
+            style="background-color: #ffdd46; color: rgb(0, 0, 0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.5rem; margin-bottom: 30px;">
+            Guardar Informacion
+          </button>
+          <button class="btn btn-sm" [routerLink]="['/mascotas']"
+            style="background-color: #7cc4ff; color: rgb(0, 0, 0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); margin-left: 10px; font-family: 'Arial', sans-serif; font-size: 1.5rem; margin-bottom: 30px;">
+            Regresar a Mascotas
+          </button>
         </div>
-      </fieldset>
-      <fieldset class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-primary" [disabled]="!mascotaForm.form.valid">Enviar</button>
-        </div>
-      </fieldset>
-    </form>
+
+      </form>
+    </div>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

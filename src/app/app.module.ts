@@ -9,13 +9,21 @@ import { MascotaService } from './shared/mascota.service';
 import { provideHttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
+import { ListaAdoptantesComponent } from './lista-adoptantes/lista-adoptantes.component';
+import { ListaSolicitudesComponent } from './lista-solicitudes/lista-solicitudes.component';
+import { EditarAdoptantesComponent } from './editar-adoptantes/editar-adoptantes.component';
+import { EditarSolicitudesComponent } from './editar-solicitudes/editar-solicitudes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaMascotasComponent,
     EditarMascotasComponent,
-    InicioComponent
+    InicioComponent,
+    ListaAdoptantesComponent,
+    ListaSolicitudesComponent,
+    EditarAdoptantesComponent,
+    EditarSolicitudesComponent
   ],
   imports: [
     BrowserModule,

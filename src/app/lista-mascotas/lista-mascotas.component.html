@@ -1,40 +1,118 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <form class="form-inline">
-        <fieldset class="form-group col-sm-11"></fieldset>
-        <fieldset class="form-group col-sm-1">
-          <a class="btn btn-primary" [routerLink]="['/mascotas/agregar']">Nueva Mascota</a>
-        </fieldset>
-      </form>
-      <br>
-      <table class="table table-striped">
-        <thead>
-          <tr class="row">
-            <th class="col-sm-2"> ID </th>
-            <th class="col-sm-4"> NOMBRE </th>
-            <th class="col-sm-4"> EDAD </th>
-            <th class="col-sm-2"> ACCIONES</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let mascota of mascotas | async" class="row">
-            <td class="col-sm-2"><i>{{ mascota.id }}</i></td>
-            <td class="col-sm-4"><i>{{ mascota.nombre }}</i></td>
-            <td class="col-sm-4"><i>{{ mascota.edad }}</i></td>
-            <td class="col-sm-1">
-              <fieldset class="form-group col-sm-1">
-                <a class="btn btn-info" [routerLink]="['/mascotas/editar/', mascota.id]">Editar</a>
-              </fieldset>
-            </td>
-            <td class="col-sm-1">
-              <fieldset class="form-group col-sm-1">
-                <a class="btn btn-danger" (click)="borrarMascota(mascota.id)">Borrar</a>
-              </fieldset>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<style>
+  .background-image {
+    background-image: url('https://img.freepik.com/fotos-premium/conjunto-diferentes-mascotas-lindas-sobre-fondo-blanco_495423-44226.jpg?w=826');
+    background-size: cover;
+    /* Hace que la imagen cubra todo el contenedor */
+    background-position: center;
+    /* Centra la imagen */
+    position: absolute;
+    /* Posición absoluta para cubrir el body */
+    top: 0;
+    /* Coloca la imagen al inicio del contenedor */
+    left: 0;
+    /* Coloca la imagen al inicio del contenedor */
+    right: 0;
+    /* Abarca todo el ancho */
+    bottom: 0;
+    /* Abarca toda la altura */
+    opacity: 0.5;
+    /* Establece la opacidad */
+    z-index: -1;
+    /* Asegura que la imagen esté detrás del contenido */
+  }
+
+
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+
+
+  }
+
+  .card-body {
+    text-align: center;
+    background-color: #fcdeff;
+    border-radius: 15px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
+    width: 300px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .featured-pet-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+</style>
+
+<!-- Imagen de fondo -->
+<div class="background-image"></div>
+
+
+<div class="container mt-5">
+  <div class="text-center mb-4">
+    <h2 style="font-size: 40px; text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);">Registros de Mascotas en Adopcion</h2>
+
+    <!-- Botón Registrar Nueva Mascota centrado -->
+    <button class="btn btn-sm mt-2" [routerLink]="['/mascotas/agregar']"
+      style="background-color: #ffa8db; color: black; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.5rem;">
+      Registrar Nueva Mascota
+    </button>
   </div>
+
+
+  <section class="featured-pets">
+    <div class="row">
+      <ng-container *ngFor="let mascota of (mascotas | async)">
+        <div class="col-lg-3 col-md-6 col-sm-12"
+          *ngIf="!searchText || mascota.name.toLowerCase().includes(searchText.toLowerCase()) || mascota.species.toLowerCase().includes(searchText.toLowerCase())">
+          <div class="card-body">
+            <!-- Asignar imagen según la especie usando un condicional en el src -->
+            <img class="card-img-top" [src]="(mascota.species.toLowerCase() === 'perro') ? 'https://www.svgrepo.com/show/434054/dog.svg' :
+                   (mascota.species.toLowerCase() === 'gato') ? 'https://www.svgrepo.com/show/434029/cat.svg' :
+                   (mascota.species.toLowerCase() === 'hamster') ? 'https://www.svgrepo.com/show/396604/hamster.svg' :
+                   (mascota.species.toLowerCase() === 'conejo') ? 'https://www.svgrepo.com/show/402544/rabbit-face.svg' :
+                   (mascota.species.toLowerCase() === 'cuy' || mascota.species.toLowerCase() === 'conejillo de indias') ? 'https://img.freepik.com/vector-gratis/vinilo-decorativo-cabeza-conejillo-indias_1308-78569.jpg?t=st=1727840681~exp=1727844281~hmac=4b195fbdeb586c47b95bd3df5f26624f07f9b02a945ac03e7f640984d454dd00&w=740' :
+                   (mascota.species.toLowerCase() === 'raton') ? 'https://www.svgrepo.com/show/398184/rat.svg' :
+                   (mascota.species.toLowerCase() === 'loro') ? 'https://www.svgrepo.com/show/406842/parrot.svg' :
+                   (mascota.species.toLowerCase() === 'tortuga') ? 'https://www.svgrepo.com/show/159676/tortoise.svg' :
+                   (mascota.species.toLowerCase() === 'ave') ? 'https://www.svgrepo.com/show/530309/bird.svg ' :
+                   (mascota.species.toLowerCase() === 'pez') ? 'https://www.svgrepo.com/show/256356/fish.svg' :
+                   'https://www.svgrepo.com/show/289219/track-cat.svg'" alt="Imagen de {{mascota.name}}"
+              style="height: 200px; width: 200px;">
+
+
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: bold; margin-bottom: 10px;">Nombre: {{ mascota.name }}</h5>
+              <p class="card-text" style="font-weight: bold; opacity: 0.9;">ID: {{ mascota.id }}</p>
+              <p class="card-text" style="font-weight: bold; opacity: 0.9;">Edad: {{ mascota.age }} años</p>
+              <p class="card-text" style="font-weight: bold; opacity: 0.9;">Especie: {{ mascota.species }}</p>
+              <p class="card-text" style="font-weight: bold; opacity: 0.9;">Estado: {{ mascota.status }}</p>
+
+              <!-- Botón Editar -->
+              <a class="btn btn-sm mr-2" [routerLink]="['/mascotas/editar/', mascota.id]"
+                style="background-color: #ffd037; color: rgb(0, 0, 0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem; margin-bottom: 30px;">
+                Editar
+              </a>
+
+              <!-- Botón Borrar -->
+              <button class="btn btn-sm" (click)="borrarMascota(mascota.id)"
+                style="background-color: #ff7a70; color: rgb(0, 0, 0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem; margin-bottom: 30px; margin-left: 10px;">
+                Borrar
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </section>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
