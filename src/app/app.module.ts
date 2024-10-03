@@ -14,6 +14,11 @@ import { ListaSolicitudesComponent } from './lista-solicitudes/lista-solicitudes
 import { EditarAdoptantesComponent } from './editar-adoptantes/editar-adoptantes.component';
 import { EditarSolicitudesComponent } from './editar-solicitudes/editar-solicitudes.component';
 import { AdoptanteService } from './shared/adoptante.service';
+import { SolicitudService } from './shared/solicitud.service';
+import { ListaEmpleadosComponent } from './lista-empleados/lista-empleados.component';
+import { EditarEmpleadosComponent } from './editar-empleados/editar-empleados.component';
+import { EmpleadoService } from './shared/empleado.service';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +29,9 @@ import { AdoptanteService } from './shared/adoptante.service';
     ListaAdoptantesComponent,
     ListaSolicitudesComponent,
     EditarAdoptantesComponent,
-    EditarSolicitudesComponent
+    EditarSolicitudesComponent,
+    ListaEmpleadosComponent,
+    EditarEmpleadosComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +42,8 @@ import { AdoptanteService } from './shared/adoptante.service';
   providers: [
     MascotaService,
     AdoptanteService,
+    SolicitudService,
+    EmpleadoService,
     provideHttpClient(),
     provideClientHydration()
   ],

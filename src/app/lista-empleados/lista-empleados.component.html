@@ -1,0 +1,111 @@
+<style>
+    .background-image {
+        background-image: url('https://img.freepik.com/vector-gratis/retrato-corporativo-oficinistas-empleados_74855-5471.jpg?t=st=1727920606~exp=1727924206~hmac=707610e3842c9181d2fa9ad5cc725ecbfcf1e61c2bb89d7e591ac71de65ae29a&w=1380');
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.2;
+        z-index: -1;
+    }
+
+    .empleado-card {
+        background-color: rgba(246, 202, 255, 0.74);
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(77, 0, 100, 0.726);
+        padding: 15px;
+        margin-bottom: 20px;
+        transition: transform 0.2s;
+    }
+
+    .empleado-card:hover {
+        transform: scale(1.02);
+    }
+
+    .empleado-title {
+        font-weight: bold;
+        color: #000000;
+        margin-bottom: 5px;
+        
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+</style>
+
+
+
+<!-- Imagen de fondo -->
+<div class="background-image"></div>
+
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2 style="font-size: 40px; text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);">Registros de Empleados</h2>
+
+        <!-- Botón Registrar Nuevo empleado centrado -->
+        <button class="btn btn-sm mt-2" [routerLink]="['/empleados/agregar']"
+            style="background-color: #ffa8db; color: black; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.5rem;">
+            Registrar Nuevo Empleado
+        </button>
+    </div>
+
+
+
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            <div class="row">
+                <ng-container *ngFor="let empleado of (empleados | async)">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="empleado-card">
+                            <div class="empleado-info">
+                                <span class="empleado-title">ID:</span>
+                                {{ empleado.id }}
+                            </div>
+                            <div class="empleado-info">
+                                <span class="empleado-title">NOMBRE COMPLETO:</span>
+                                {{ empleado.full_name }}
+                            </div>
+                            <div class="empleado-info">
+                                <span class="empleado-title">CARGO:</span>
+                                {{ empleado.position }}
+                            </div>
+                            <div class="empleado-info">
+                                <span class="empleado-title">TELEFONO:</span>
+                                {{ empleado.phone }}
+                            </div>
+                            <div class="empleado-info">
+                                <span class="empleado-title">EMAIL:</span>
+                                {{ empleado.email }}
+                            </div>
+                            <div class="empleado-info">
+                                <span class="empleado-title">FECHA CONTRATO:</span>
+                                {{ empleado.hire_date }}
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <!-- Botón Editar -->
+                                <a class="btn btn-sm mr-2" [routerLink]="['/empleados/editar/', empleado.id]"
+                                    style="background-color: #ffd037; color: rgb(0, 0, 0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem; margin-bottom: 30px;">
+                                    Editar Informacion
+                                </a>
+
+                                <!-- Botón Borrar -->
+                                <button class="btn btn-sm" (click)="borrarEmpleado(empleado.id)"
+                                    style="background-color: #ff7a70; color: rgb(0, 0, 0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem; margin-bottom: 30px;">
+                                    Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

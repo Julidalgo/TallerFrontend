@@ -1,1 +1,114 @@
-<p>lista-solicitudes works!</p>
+<style>
+    .background-image {
+        background-image: url('https://img.freepik.com/vector-gratis/grupo-personas-sonrientes-felices-mirando-vista-superior-ilustracion-vector-plano-fondo-blanco_1284-78599.jpg?t=st=1727916467~exp=1727920067~hmac=f80fa3645f68cf2ba828d84d9115aa4812769c8f5e5e929442e954bf0e71eaee&w=826');
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.2;
+        z-index: -1;
+    }
+
+    .solicitud-card {
+        background-color: rgba(246, 202, 255, 0.74);
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(77, 0, 100, 0.726);
+        padding: 15px;
+        margin-bottom: 20px;
+        transition: transform 0.2s;
+    }
+
+    .solicitud-card:hover {
+        transform: scale(1.02);
+    }
+
+    .solicitud-title {
+        font-weight: bold;
+        color: #000000;
+        margin-bottom: 5px;
+        
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+</style>
+
+
+
+<!-- Imagen de fondo -->
+<div class="background-image"></div>
+
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2 style="font-size: 40px; text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);">Registros de Solicitudes</h2>
+
+        <!-- Botón Registrar Nueva Solicitud centrado -->
+        <button class="btn btn-sm mt-2" [routerLink]="['/solicitudes/agregar']"
+            style="background-color: #ffa8db; color: black; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.5rem;">
+            Registrar Nueva Solicitud
+        </button>
+    </div>
+
+
+
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            <div class="row">
+                <ng-container *ngFor="let solicitud of (solicitudes | async)">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="solicitud-card">
+                            <div class="solicitud-info">
+                                <span class="solicitud-title">ID:</span>
+                                {{ solicitud.id }}
+                            </div>
+                            <div class="solicitud-info">
+                                <span class="solicitud-title">ID MASCOTA:</span>
+                                {{ solicitud.pet_id }}
+                            </div>
+                            <div class="solicitud-info">
+                                <span class="solicitud-title">ID ADOPTANTE:</span>
+                                {{ solicitud.adopter_id }}
+                            </div>
+                            <div class="solicitud-info">
+                                <span class="solicitud-title">FECHA SOLICITUD:</span>
+                                {{ solicitud.request_date }}
+                            </div>
+                            <div class="solicitud-info">
+                                <span class="solicitud-title">ESTADO:</span>
+                                {{ solicitud.status }}
+                            </div>
+                            <div class="solicitud-info">
+                                <span class="adoptante-title">FECHA APROVACION:</span>
+                                {{ solicitud.approval_date }}
+                            </div>
+                            <div class="solicitud-info">
+                                <span class="solicitud-title">ID EMPLEADO:</span>
+                                {{ solicitud.employee_id }}
+                            </div>
+                            <div class="action-buttons">
+                                <!-- Botón Editar -->
+                                <a class="btn btn-sm mr-2" [routerLink]="['/solicitudes/editar/', solicitud.id]"
+                                    style="background-color: #ffd037; color: rgb(0, 0, 0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem; margin-bottom: 30px;">
+                                    Editar Informacion
+                                </a>
+
+                                <!-- Botón Borrar -->
+                                <button class="btn btn-sm" (click)="borrarSolicitud(solicitud.id)"
+                                    style="background-color: #ff7a70; color: rgb(0, 0, 0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem; margin-bottom: 30px;">
+                                    Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

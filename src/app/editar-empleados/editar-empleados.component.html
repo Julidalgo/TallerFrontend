@@ -1,6 +1,6 @@
 <style>
     .background-image {
-        background-image: url('https://img.freepik.com/vector-gratis/personas-dibujadas-mano-mascotas-parque_23-2148970420.jpg?t=st=1727917703~exp=1727921303~hmac=5061f119f802c1b8a3487cfa5f746e88b1e1ba9cdadbe24118e38fe21adac144&w=740');
+        background-image: url('https://img.freepik.com/vector-gratis/ilustracion-retrato-grupo-empleados_74855-5495.jpg?t=st=1727920678~exp=1727924278~hmac=d575113609b01bf310ee73ea06df6a8cb048e72b3d127d4064d2f2f012c86872&w=1380');
         background-size: cover;
         background-position: center;
         position: absolute;
@@ -8,7 +8,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        opacity: 0.3;
+        opacity: 0.2;
         z-index: -1;
     }
 
@@ -33,25 +33,25 @@
         color: #000;
     }
 </style>
-
 <!-- Imagen de fondo -->
 <div class="background-image"></div>
 
 <div class="container mt-5">
     <div class="d-flex justify-content-center align-items-center mb-4">
         <h2 class="text-center" style="font-size: 40px; text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);">
-            Información de la Solicitud</h2>
+            Información del Empleado
+        </h2>
     </div>
 
     <!-- Tarjeta para contener la imagen y las columnas -->
     <div class="card custom-card">
         <div class="card-body">
-            <form #solicitudForm="ngForm" (ngSubmit)="onSubmit()">
+            <form #empleadoForm="ngForm" (ngSubmit)="onSubmit()">
                 <div class="row">
                     <!-- Columna para la imagen -->
                     <div class="col-md-4 text-center">
-                        <img class="card-img-top" [src]="
-              'https://www.svgrepo.com/show/454544/add-animal-cat.svg'" alt="Imagen de {{solicitud.id}}"
+                        <img class="card-img-top" [src]="'https://www.svgrepo.com/show/493436/new-employeesnew-members-of-society-spring.svg'"
+                            alt="Imagen de {{empleado.full_name}}"
                             style="height: 250px; width: 250px; margin-top: 150px;">
                     </div>
 
@@ -60,19 +60,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <fieldset class="form-group">
-                                    <label class="control-label" for="pet_id"
-                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">ID Mascota</label>
-                                    <input type="text" class="form-control" required [(ngModel)]="solicitud.pet_id"
-                                        name="pet_id" id="pet_id"
+                                    <label class="control-label" for="full_name"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2); font-family: 'Arial', sans-serif; font-size: 1.2rem;">Nombre
+                                        Completo</label>
+                                    <input type="text" class="form-control" required [(ngModel)]="empleado.full_name"
+                                        name="full_name" id="full_name"
                                         style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
                                 </fieldset>
                             </div>
                             <div class="col-md-6">
                                 <fieldset class="form-group">
-                                    <label class="control-label" for="adopter_id"
-                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">ID Adoptante</label>
-                                    <input type="text" class="form-control" required [(ngModel)]="solicitud.adopter_id"
-                                        name="adopter_id" id="adopter_id"
+                                    <label class="control-label" for="position"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2); font-family: 'Arial', sans-serif; font-size: 1.2rem;">Cargo</label>
+                                    <input type="text" class="form-control" required [(ngModel)]="empleado.position"
+                                        name="position" id="position"
                                         style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
                                 </fieldset>
                             </div>
@@ -81,19 +82,19 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <fieldset class="form-group">
-                                    <label class="control-label" for="request_date"
-                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Fecha Solicitud</label>
-                                    <input type="request_date" class="form-control" required [(ngModel)]="solicitud.request_date"
-                                        name="request_date" id="request_date"
+                                    <label class="control-label" for="phone"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2); font-family: 'Arial', sans-serif; font-size: 1.2rem;">Teléfono</label>
+                                    <input type="phone" class="form-control" required [(ngModel)]="empleado.phone"
+                                        name="phone" id="phone"
                                         style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
                                 </fieldset>
                             </div>
                             <div class="col-md-6">
                                 <fieldset class="form-group">
-                                    <label class="control-label" for="status"
-                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Estado</label>
-                                    <input type="text" class="form-control" required [(ngModel)]="solicitud.status"
-                                        name="status" id="status"
+                                    <label class="control-label" for="email"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2); font-family: 'Arial', sans-serif; font-size: 1.2rem;">Email</label>
+                                    <input type="text" class="form-control" required [(ngModel)]="empleado.email"
+                                        name="email" id="email"
                                         style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
                                 </fieldset>
                             </div>
@@ -102,36 +103,27 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <fieldset class="form-group">
-                                    <label class="control-label" for="employee_id"
-                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">ID Empleado</label>
-                                    <input type="text" class="form-control" required [(ngModel)]="solicitud.employee_id"
-                                        name="employee_id" id="employee_id"
-                                        style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
-                                </fieldset>
-                            </div>
-                            <div class="col-md-6">
-                                <fieldset class="form-group">
-                                    <label class="control-label" for="approval_date"
-                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);  font-family: 'Arial', sans-serif; font-size: 1.2rem;">Fecha Aprovacion</label>
-                                    <input type="date" class="form-control" required [(ngModel)]="solicitud.approval_date"
-                                        name="approval_date" id="approval_date"
+                                    <label class="control-label" for="hire_date"
+                                        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2); font-family: 'Arial', sans-serif; font-size: 1.2rem;">Fecha
+                                        Contrato</label>
+                                    <input type="date" class="form-control" required [(ngModel)]="empleado.hire_date"
+                                        name="hire_date" id="hire_date"
                                         style="font-family: 'Arial', sans-serif; font-size: 1.2rem;">
                                 </fieldset>
                             </div>
                         </div>
-
-                       
                     </div>
                 </div>
+
                 <!-- Botones de Guardar Cambios debajo -->
                 <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-sm" [disabled]="!solicitudForm.form.valid"
+                    <button type="submit" class="btn btn-sm" [disabled]="!empleadoForm.form.valid"
                         style="background-color: #ffdd46; color: rgb(0, 0, 0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.5rem; margin-bottom: 30px;">
-                        Guardar Informacion
+                        Guardar Información
                     </button>
-                    <button class="btn btn-sm" [routerLink]="['/solicitudes']"
+                    <button class="btn btn-sm" [routerLink]="['/empleados']"
                         style="background-color: #7cc4ff; color: rgb(0, 0, 0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); margin-left: 10px; font-family: 'Arial', sans-serif; font-size: 1.5rem; margin-bottom: 30px;">
-                        Regresar a Solicitudes
+                        Regresar a Empleados
                     </button>
                 </div>
             </form>
